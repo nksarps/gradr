@@ -1,5 +1,3 @@
-import java.lang.reflect.Type;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -65,10 +63,8 @@ public class Main {
                     // Adding a student to the array
                     studentManager.addStudent(student);
 
-                    System.out.println(studentManager.getStudentCount());
-
                     // Using studentCount as studentID
-                    System.out.printf("Student ID: STU%03d\n", studentManager.getStudentCount());
+                    System.out.printf("Student ID: %s\n", student.getStudentId());
                     System.out.printf("Name: %s\n", student.getName());
                     System.out.printf("Type: %s\n", student.getStudentType());
                     System.out.printf("Age: %d\n", student.getAge());
@@ -78,7 +74,7 @@ public class Main {
                     if (student.getStudentType().equals("Honors")) {
                         HonorsStudent honorsStudent = (HonorsStudent) student;
                         // Change the average here
-                        String isEligible = honorsStudent.checkHonorsEligibility(87.00);
+                        String isEligible = honorsStudent.checkHonorsEligibility();
 
                         System.out.printf("Honors Eligible: %s\n", isEligible);
                     }
@@ -87,14 +83,47 @@ public class Main {
                     System.out.println();
                     break;
                 case 2:
-                    System.out.println("VIEW STUDENTS");
-                    System.out.println("_______________________________________________");
-                    System.out.println();
+                    int studentDisplayCount = 0;
+                    int regularStudentsDisplayCount = 0;
+                    int honorStudentsDisplayCount = 0;
+
+                    int studentCount = studentManager.getStudentCount();
+
+                    System.out.println("STUDENT LISTING");
+                    System.out.println("----------------------------------------------------------------------------------------------------");
+                    System.out.println("STU ID   | NAME                    | TYPE               | AVG GRADE         | STATUS                ");
+                    System.out.println("----------------------------------------------------------------------------------------------------");
+
+                    if (studentCount == 0) {
+                        System.out.println("No students found\n");
+                    } else if (studentCount <= 5) {
+                        for (int i = 0; i < studentCount; i++) {
+                            Student s = studentManager.getStudents()[i];
+
+                            s.displayStudentDetails();
+                        }
+                    }
+
+
+
                     break;
                 case 3:
                     System.out.println("RECORD GRADE");
                     System.out.println("_______________________________________________");
                     System.out.println();
+
+                    System.out.print("Enter Student ID: ");
+                    String studentId = scanner.nextLine();
+                    System.out.println();
+
+                    Student foundStudent = studentManager.findStudent(studentId);
+
+                    System.out.println("Student Details:");
+                    System.out.printf("Name: %s\n", foundStudent.getName());
+                    System.out.printf("Type: %s Student\n", foundStudent.getStudentType());
+                    System.out.printf("Current Average: %%%.2f\n", foundStudent.getPassingGrade()); // change this to the student's average mark
+
+
                     break;
                 case 4:
                     System.out.println("VIEW GRADE REPORT");
