@@ -142,10 +142,12 @@ class HonorsStudent extends Student {
 
 class StudentManager {
     private Student students[] = new Student[50];
-    private int studentCount;
+    private int studentCount = 0;
 
-    public void addStudent() {
-        // Add students to array
+    // added student to the counter array
+    public void addStudent(Student student) {
+        students[studentCount] = student;
+        studentCount++;
     }
 
 }
