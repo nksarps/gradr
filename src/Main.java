@@ -1,15 +1,19 @@
+import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int choice;
+        Student student;
 
         do {
             displayMainMenu();
 
-            System.out.printf("Enter choice: ");
+            System.out.print("Enter choice: ");
             choice = scanner.nextInt();
+            scanner.nextLine();
             System.out.println();
 
             switch (choice) {
@@ -17,6 +21,61 @@ public class Main {
                     // ADD STUDENT
                     System.out.println("ADD STUDENT");
                     System.out.println("_______________________________________________");
+                    System.out.println();
+
+                    System.out.print("Enter student name: ");
+                    String name = scanner.nextLine();
+
+                    System.out.print("Enter student age: ");
+                    int age = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.print("Enter student email: ");
+                    String email = scanner.nextLine();
+
+                    System.out.print("Enter student phone: ");
+                    String phone = scanner.nextLine();
+                    System.out.println();
+
+                    System.out.println("Student type:");
+                    System.out.println("1. Regular Student (Passing grade: 50%)");
+                    System.out.println("2. Honors Student: (Passing grade: 60%, honors recognition)");
+                    System.out.println();
+
+                    System.out.print("Select type (1-2): ");
+                    int studentType = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println();
+
+                    if (studentType == 1) {
+                        student = new RegularStudent(name, age, email, phone);
+                    } else if (studentType == 2) {
+                        student = new HonorsStudent(name, age, email, phone);
+                    } else {
+                        System.out.println("Invalid student type. Enter details again.");
+                        break;
+                    }
+
+                    student.setStatus();
+
+                    System.out.println("✔️ Student added successfully!");
+
+                    System.out.printf("Student ID: STU000\n");
+                    System.out.printf("Name: %s\n", student.getName());
+                    System.out.printf("Type: %s\n", student.getStudentType());
+                    System.out.printf("Age: %d\n", student.getAge());
+                    System.out.printf("Email: %s\n", student.getEmail());
+                    System.out.printf("Passing Grade: %d%%\n", (int) student.getPassingGrade());
+
+                    if (student.getStudentType().equals("Honors")) {
+                        HonorsStudent honorsStudent = (HonorsStudent) student;
+                        // Change the average here
+                        String isEligible = honorsStudent.checkHonorsEligibility(87.00);
+
+                        System.out.printf("Honors Eligible: %s\n", isEligible);
+                    }
+                    System.out.printf("Status: %s\n", student.getStatus());
+
                     System.out.println();
                     break;
                 case 2:
@@ -61,4 +120,5 @@ public class Main {
         System.out.println("5. Exit");
         System.out.println();
     }
+
 }
