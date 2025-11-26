@@ -9,7 +9,7 @@ abstract class Student {
     static int studentCounter;
 
     Student() {
-        // Change to super or something
+        setStudentId();
     }
 
     abstract void displayStudentDetails();
@@ -18,11 +18,12 @@ abstract class Student {
 
     abstract double getPassingGrade();
 
+    // we will calculate the average grade later
     public double calculateAverageGrade() {
         return 0.0;
     };
 
-    public boolean isPassing() {
+    public boolean isPassing(double averageGrade) {
         // use an if statement and let this method take in an attribute of score
         return false;
     }
@@ -53,7 +54,7 @@ abstract class Student {
     }
 
     // Setter for email
-    public void setEmail(String name) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -76,6 +77,17 @@ abstract class Student {
     public void setStatus() {
         this.status = "Active";
     }
+
+    // Getter for studentsId
+    public String getStudentId() {
+        return studentId;
+    }
+
+    // Setter for studentsId
+    public void setStudentId() {
+        // Question: Why does ++studentCounter work but studentCounter++ does not
+        studentId = String.format("STU%03d", ++studentCounter);
+    }
 }
 
 
@@ -83,24 +95,26 @@ class RegularStudent extends Student {
     private double passingGrade = 50.0;
 
     RegularStudent(String name, int age, String email, String phone) {
-        this.setName(name);
-        this.setAge(age);
-        this.setEmail(email);
-        this.setPhone(phone);
+        setName(name);
+        setAge(age);
+        setEmail(email);
+        setPhone(phone);
     }
 
     @Override
-    void displayStudentDetails() {
+    public void displayStudentDetails() {
         // Display student details
+        System.out.printf("%-8s | %-23s | %-18s | %-17.2f | %20s\n",
+                getStudentId(), getName(), getStudentType(), calculateAverageGrade(), getStatus());
     }
 
     @Override
-    String getStudentType() {
+    public String getStudentType() {
         return "Regular";
     }
 
     @Override
-    double getPassingGrade() {
+    public double getPassingGrade() {
         return 50.0;
     }
 }
@@ -120,20 +134,24 @@ class HonorsStudent extends Student {
     @Override
     void displayStudentDetails() {
         // Display student details + Honors status
+        System.out.printf("%-8s | %-23s | %-18s | %-17.2f | %-20s\n",
+                getStudentId(), getName(), getStudentType(), calculateAverageGrade(), getStatus());
     }
 
     @Override
-    String getStudentType() {
+    public String getStudentType() {
         return "Honors";
     }
 
     @Override
-    double getPassingGrade() {
+    public double getPassingGrade() {
         return 60.0;
     }
 
-    public String checkHonorsEligibility(double average) {
-        if (average >= 85.0) {
+    public String checkHonorsEligibility() {
+        double averageGrade = calculateAverageGrade();
+
+        if (averageGrade >= 85.0) {
             return "Yes";
         }
         return "No";
@@ -150,9 +168,29 @@ class StudentManager {
         studentCount++;
     }
 
+    public Student findStudent(String studentId) {
+        for (Student student : students) {
+            if (student.getStudentId().equals(studentId)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    // Returns are students
+    public void viewAllStudents() {
+        // return students; // Return type was Student[]
+        System.out.println(students.toString());
+    }
+
     // produces the number of students
     public int getStudentCount() {
         return studentCount;
+    }
+
+    // Getter for students array
+    public Student[] getStudents() {
+        return students;
     }
 
 }
