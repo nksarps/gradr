@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        StudentManager studentManager = new StudentManager(); // studentManager things
         int choice;
         Student student;
 
@@ -60,7 +62,13 @@ public class Main {
 
                     System.out.println("✔️ Student added successfully!");
 
-                    System.out.printf("Student ID: STU000\n");
+                    // Adding a student to the array
+                    studentManager.addStudent(student);
+
+                    System.out.println(studentManager.getStudentCount());
+
+                    // Using studentCount as studentID
+                    System.out.printf("Student ID: STU%03d\n", studentManager.getStudentCount());
                     System.out.printf("Name: %s\n", student.getName());
                     System.out.printf("Type: %s\n", student.getStudentType());
                     System.out.printf("Age: %d\n", student.getAge());
