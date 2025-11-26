@@ -145,7 +145,7 @@ class StudentManager {
     private int studentCount;
 
     public void addStudent() {
-        // Add student to array
+        // Add students to array
     }
 
 }
