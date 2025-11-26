@@ -150,4 +150,9 @@ class StudentManager {
         studentCount++;
     }
 
+    // produces the number of students
+    public int getStudentCount() {
+        return studentCount;
+    }
+
 }
