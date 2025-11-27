@@ -16,9 +16,10 @@ abstract class Student {
 
     abstract String getStudentType();
 
+    // return average of all grades (for the student)
     abstract double getPassingGrade();
 
-    // we will calculate the average grade later
+    // I will calculate the average grade later
     public double calculateAverageGrade() {
         return 0.0;
     };
@@ -28,62 +29,52 @@ abstract class Student {
         return false;
     }
 
-    // Getter for name
+    // Getters
     public String getName() {
         return name;
     }
 
-    // Setter for name
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // Getter for age
     public int getAge() {
         return age;
     }
 
-    // Setter for age
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    // Getter for email
     public String getEmail() {
         return email;
     }
 
-    // Setter for email
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    // Getter for phone
     public String getPhone() {
         return phone;
     }
 
-    // Setter for phone
-    public void setPhone(String name) {
-        this.phone = phone;
-    }
-
-    // Getter for status
     public String getStatus() {
         return status;
     }
 
-    // Setter for status
-    public void setStatus() {
-        this.status = "Active";
-    }
-
-    // Getter for studentsId
     public String getStudentId() {
         return studentId;
     }
 
-    // Setter for studentsId
+    // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String name) {
+        this.phone = phone;
+    }
+
+    public void setStatus() {
+        this.status = "Active";
+    }
+
     public void setStudentId() {
         // Question: Why does ++studentCounter work but studentCounter++ does not
         studentId = String.format("STU%03d", ++studentCounter);
@@ -134,7 +125,7 @@ class HonorsStudent extends Student {
     @Override
     void displayStudentDetails() {
         // Display student details + Honors status
-        System.out.printf("%-8s | %-23s | %-18s | %-17.2f | %-20s\n",
+        System.out.printf("%-8s | %-23s | %-18s | %-17.2f | %20s\n",
                 getStudentId(), getName(), getStudentType(), calculateAverageGrade(), getStatus());
     }
 
@@ -159,7 +150,7 @@ class HonorsStudent extends Student {
 }
 
 class StudentManager {
-    private Student students[] = new Student[50];
+    private Student[] students = new Student[50];
     private int studentCount = 0;
 
     // added student to the counter array
@@ -168,7 +159,7 @@ class StudentManager {
         studentCount++;
     }
 
-    public Student findStudent(String studentId) {
+    public Student getStudent(String studentId) {
         for (Student student : students) {
             if (student.getStudentId().equals(studentId)) {
                 return student;
