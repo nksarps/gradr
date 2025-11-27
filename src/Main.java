@@ -5,6 +5,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         StudentManager studentManager = new StudentManager(); // studentManager things
+        GradeManager gradeManager = new GradeManager();
+
         int choice;
         Student student;
         Subject subject;
@@ -59,7 +61,7 @@ public class Main {
 
                     student.setStatus();
 
-                    System.out.println("✔️ Student added successfully!");
+                    System.out.println("Student added successfully!");
 
                     // Adding a student to the array
                     studentManager.addStudent(student);
@@ -131,7 +133,7 @@ public class Main {
                     System.out.println("1. Core Subject (Mathematics, English, Science)");
                     System.out.println("2. Elective Subject (Music, Art, Physical Education)\n");
 
-                    System.out.printf("Select type (1-2): ");
+                    System.out.print("Select type (1-2): ");
                     int subjectTypeChoice = scanner.nextInt();
                     scanner.nextLine();
 
@@ -160,6 +162,85 @@ public class Main {
                         System.out.println("1. Music");
                         System.out.println("2. Art");
                         System.out.println("3. Physical Education");
+                    }
+
+                    System.out.println();
+
+                    System.out.print("Select subject: ");
+                    int subjectChoice = scanner.nextInt();
+                    scanner.nextLine();
+
+                    // Adding the names of the subject to the subject object instantiated
+                    if (subjectChoice == 1 || subjectChoice == 2 || subjectChoice == 3) {
+                        if (subjectTypeChoice == 1) {
+                            if (subjectChoice == 1) {
+                                subject.setSubjectName("Mathematics");
+                            } else if (subjectChoice == 2) {
+                                subject.setSubjectName("English");
+                            } else {
+                                subject.setSubjectName("Science");
+                            }
+                        } else {
+                            if (subjectChoice == 1) {
+                                subject.setSubjectName("Music");
+                            } else if (subjectChoice == 2) {
+                                subject.setSubjectName("Art");
+                            } else {
+                                subject.setSubjectName("Physical Education");
+                            }
+                        }
+                    } else {
+                        System.out.println("Invalid subject choice");
+                        break;
+                    }
+
+                    System.out.println();
+
+                    // Taking the input of the subject's grade
+                    System.out.print("Enter grade: ");
+                    int gradeInput = scanner.nextInt();
+                    scanner.nextLine();
+
+                    // Validating the grade
+                    Grade grade = new Grade(studentId, subject, (double) gradeInput);
+
+                    // Used recordGrade because it validates the grade before return true
+                    if (grade.recordGrade(gradeInput)) {
+                        grade.setGradeId();
+
+                        System.out.println("GRADE CONFIRMATION");
+                        System.out.println("_______________________________________________________");
+                        System.out.printf("Grade ID: %s\n", grade.getGradeId());
+                        System.out.printf("Student: %s - %s\n", studentId, foundStudent.getName());
+                        System.out.printf("Subject: %s (%s)\n", subject.getSubjectName(), subject.getSubjectType());
+                        System.out.printf("Grade: %.1f%%\n", (double) gradeInput);
+                        System.out.printf("Date: %s\n", grade.getDate());
+                        System.out.println("______________________________________________________\n");
+
+                        // TD: add constraint to forget capitalization
+                        System.out.print("Confirm grade? (Y/N): ");
+                        char confirmGrade = scanner.next().charAt(0);
+
+                        if (confirmGrade == 'Y' || confirmGrade == 'N') {
+                            if (confirmGrade == 'Y') {
+                                gradeManager.addGrade(grade);
+
+                                System.out.println("Grade added successfully.\n");
+                            } else {
+                                // Reduce the gradeCounter by 1 so the counter matches the index - 1
+                                // in the grades array
+                                Grade.gradeCounter--;
+
+                                System.out.println("Grade record cancelled\n");
+                            }
+                        } else {
+                            System.out.println("Invalid input.");
+                        }
+
+
+                    } else {
+                        System.out.println("Invalid grade entered");
+                        break;
                     }
 
                     // CONTINUE FROM HERE!!!!!!!!!!!!!!!!!!!!!!!!

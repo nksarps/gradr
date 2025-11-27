@@ -15,7 +15,7 @@ public class Grade implements Gradable {
     private String date;
 
     Grade (String studentId, Subject subject, double grade){
-        setGradeId();
+        // setGradeId();
         setStudentId(studentId);
         setSubject(subject);
         setGrade(grade);
@@ -94,10 +94,20 @@ public class Grade implements Gradable {
 }
 
 class GradeManager{
-    private Grade[] grades = new Grade[50];
+    private Grade[] grades = new Grade[200];
+    private int gradeCount;
 
     public void addGrade(Grade grade){
-        int gradeCounter = grade.getGradeCounter();
-        grades[gradeCounter] = grade;
+        // int gradeCounter = grade.getGradeCounter();
+        // using gradeCounter - 1, because gradeCounter is increased by setGradeId in the Grade class
+        // and setGradeId comes before this method
+        // grades[gradeCounter-1] = grade;
+
+        grades[gradeCount] = grade;
+        gradeCount++;
+    }
+
+    public int getGradeCount() {
+        return gradeCount;
     }
 }
