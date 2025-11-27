@@ -7,6 +7,7 @@ public class Main {
         StudentManager studentManager = new StudentManager(); // studentManager things
         int choice;
         Student student;
+        Subject subject;
 
         do {
             displayMainMenu();
@@ -94,6 +95,7 @@ public class Main {
                     System.out.println("STU ID   | NAME                    | TYPE               | AVG GRADE         | STATUS                ");
                     System.out.println("----------------------------------------------------------------------------------------------------");
 
+                    // Move this to displayStudentDetails
                     if (studentCount == 0) {
                         System.out.println("No students found\n");
                     } else if (studentCount <= 5) {
@@ -102,9 +104,10 @@ public class Main {
 
                             s.displayStudentDetails();
                         }
+                        System.out.printf("Total Students: %d\n", studentCount);
+                        // Change this to the average grade of the class
+                        System.out.printf("Average Class Grade: %.2f%%\n", 0.0);
                     }
-
-
 
                     break;
                 case 3:
@@ -116,12 +119,51 @@ public class Main {
                     String studentId = scanner.nextLine();
                     System.out.println();
 
-                    Student foundStudent = studentManager.findStudent(studentId);
+                    Student foundStudent = studentManager.getStudent(studentId);
 
                     System.out.println("Student Details:");
                     System.out.printf("Name: %s\n", foundStudent.getName());
                     System.out.printf("Type: %s Student\n", foundStudent.getStudentType());
-                    System.out.printf("Current Average: %%%.2f\n", foundStudent.getPassingGrade()); // change this to the student's average mark
+                    System.out.printf("Current Average: %.2f%%\n", foundStudent.getPassingGrade()); // change this to the student's average mark
+                    System.out.println();
+
+                    System.out.println("Subject type:");
+                    System.out.println("1. Core Subject (Mathematics, English, Science)");
+                    System.out.println("2. Elective Subject (Music, Art, Physical Education)\n");
+
+                    System.out.printf("Select type (1-2): ");
+                    int subjectTypeChoice = scanner.nextInt();
+                    scanner.nextLine();
+
+                    // Setting subject type for display in Available Subjects
+                    String subjectType;
+                    if (subjectTypeChoice == 1) {
+                        // subjectType = "Core";
+                        subject = new CoreSubject(null, null);
+                    } else if (subjectTypeChoice == 2) {
+                        // subjectType = "Elective";
+                        subject = new ElectiveSubject(null, null);
+                    } else {
+                        System.out.println("Invalid subject type entered");
+                        break;
+                    }
+
+                    System.out.println();
+
+                    subjectType = subject.getSubjectType();
+                    System.out.printf("Available %s Subjects\n", subjectType);
+                    if (subjectType.equals("Core")) {
+                        System.out.println("1. Mathematics");
+                        System.out.println("2. English");
+                        System.out.println("3. Science");
+                    } else { // Look more into this
+                        System.out.println("1. Music");
+                        System.out.println("2. Art");
+                        System.out.println("3. Physical Education");
+                    }
+
+                    // CONTINUE FROM HERE!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 
                     break;
