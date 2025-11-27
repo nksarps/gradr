@@ -243,15 +243,50 @@ public class Main {
                         break;
                     }
 
-                    // CONTINUE FROM HERE!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
                     break;
                 case 4:
                     System.out.println("VIEW GRADE REPORT");
                     System.out.println("_______________________________________________");
                     System.out.println();
+
+                    System.out.print("Enter Student ID: ");
+                    String studentIdForReport = scanner.nextLine();
+                    System.out.println();
+
+                    // Get student using ID and display student details
+                    Student studentForGrades = studentManager.getStudent(studentIdForReport);
+
+                    //If there is a student associated with the ID, continue, else
+                    // display an error message
+                    if (studentForGrades != null) {
+                        // Checking if student has grades record to display different student details
+                        boolean hasGrades = false;
+                        for (Grade studentGrade : gradeManager.getGrades()) {
+                            if (studentGrade != null && studentGrade.getStudentId().equals(studentIdForReport)) {
+                                hasGrades = true;
+                                break;
+                            }
+                        }
+
+                        if (hasGrades) {
+                            System.out.printf("Student: %s - %s\n", studentForGrades.getStudentId(), studentForGrades.getName());
+                            System.out.printf("Type: %s Student\n", studentForGrades.getStudentType());
+                            System.out.printf("Current Average: %.1f%%\n", 0.0); // change to actual average
+                            System.out.printf("Status: PASSING\n"); // change to actual status
+                            System.out.println();
+                        } else {
+                            System.out.printf("Student: %s - %s\n", studentForGrades.getStudentId(), studentForGrades.getName());
+                            System.out.printf("Type: %s Student\n", studentForGrades.getStudentType());
+                            System.out.printf("Passing Grade: %.0f%%\n", studentForGrades.getPassingGrade());
+                            System.out.println();
+                        }
+
+                        gradeManager.viewGradesByStudent(studentIdForReport);
+                    } else {
+                        System.out.println("Invalid Student ID. Student with this ID does not exist");
+                        break;
+                    }
+
                     break;
                 case 5:
                     System.out.println("Thank you for using Student Grade Management System!");

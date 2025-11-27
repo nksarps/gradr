@@ -107,7 +107,86 @@ class GradeManager{
         gradeCount++;
     }
 
+    public void viewGradesByStudent(String studentId) {
+        // Print out all the grades by the student with the provided studentID
+        // found is for checking if the student has grades added
+        boolean found = false;
+        int totalCourses = 0;
+
+        for (Grade grade : grades) {
+            if (grade == null) continue;
+
+            if (grade.getStudentId().equals(studentId)) {
+                totalCourses++;
+
+                // Printing the table header once for when a grade for found
+                // for the student. It doesn't print again because found is set to true
+                if (!found) {
+                    System.out.println("GRADE HISTORY");
+                    System.out.println("-------------------------------------------------------------------------------------");
+                    System.out.println("GRD ID   | DATE       | SUBJECT          | TYPE       | GRADE");
+                    System.out.println("-------------------------------------------------------------------------------------");
+                    found = true;
+                }
+
+                System.out.printf("%-9s | %-10s | %-16s | %-10s | %-5.1f%%\n",
+                        grade.getGradeId(),
+                        grade.getDate(),
+                        grade.getSubject().getSubjectName(),
+                        grade.getSubject().getSubjectType(),
+                        grade.getGrade());
+
+
+            }
+        }
+
+        // found remain false if there are no grades added for the student
+        if (!found) {
+            System.out.println("_______________________________________________");
+            System.out.println("No grades recorded for this student");
+            System.out.println("_______________________________________________");
+            System.out.println();
+        } else {
+            System.out.println();
+            System.out.printf("Total Grades: %d\n", totalCourses);
+            System.out.printf("Core Subjects Average: %d\n", totalCourses);
+            System.out.printf("Elective Subjects Average: %d\n", totalCourses);
+            System.out.printf("Overall Average: %d\n", totalCourses);
+
+        }
+    }
+
+    // START HERE
+    public double calculateCoreAverage(String studentId) {
+        // Print out all the grades by the student with the provided studentID
+        // Use the Grade class since its constructor takes in studentId as an input
+        // Get the subject of the grade using the subject parameter passed to the grade
+        // Use subject parameter to get core subjects
+        // Calculate the average of these core subjects
+        return 0.00;
+    }
+
+    public double calculateElectiveAverage(String studentId) {
+        // Print out all the grades by the student with the provided studentID
+        // Use the Grade class since its constructor takes in studentId as an input
+        // Get the subject of the grade using the subject parameter passed to the grade
+        // Use subject parameter to get elective subjects
+        // Calculate the average of these elective subjects
+        return 0.00;
+    }
+
+    public double calculateOverallAverage(String studentId) {
+        // Print out all the grades by the student with the provided studentID
+        // Use the Grade class since its constructor takes in studentId as an input
+        // Calculate the average of all the grades for that particular student
+        return 0.00;
+    }
+
     public int getGradeCount() {
         return gradeCount;
+    }
+
+    public Grade[] getGrades() {
+        return grades;
     }
 }
