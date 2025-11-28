@@ -130,7 +130,7 @@ public class Main {
                         System.out.println();
                         System.out.printf("Total Students: %d\n", studentCount);
                         // Change this to the average grade of the class
-                        System.out.printf("Average Class Grade: %.2f%%\n", 0.0);
+                        System.out.printf("Average Class Grade: %.2f%%\n", studentManager.calculateClassAverage());
                         System.out.println();
                     }
 
