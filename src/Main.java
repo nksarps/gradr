@@ -54,17 +54,22 @@ public class Main {
                         student = new RegularStudent(name, age, email, phone);
                     } else if (studentType == 2) {
                         student = new HonorsStudent(name, age, email, phone);
-                    } else {
+                    } else { // Loop until user enters the right student type choice
                         System.out.println("Invalid student type. Enter details again.");
                         break;
                     }
 
-                    student.setStatus();
+                    // student.setStatus();
 
-                    System.out.println("Student added successfully!");
+                    // Trying the get the averageGrade of the student
+                    double studentGradeAverage = gradeManager.calculateOverallAverage(student.getStudentId());
+
+                    // student.calculateAverageGrade() = studentGradeAverage;
 
                     // Adding a student to the array
                     studentManager.addStudent(student);
+
+                    System.out.println("Student added successfully!");
 
                     // Using studentCount as studentID
                     System.out.printf("Student ID: %s\n", student.getStudentId());
@@ -86,6 +91,7 @@ public class Main {
                     System.out.println();
                     break;
                 case 2:
+                    // CONTINUE THIS
                     int studentDisplayCount = 0;
                     int regularStudentsDisplayCount = 0;
                     int honorStudentsDisplayCount = 0;
@@ -97,14 +103,23 @@ public class Main {
                     System.out.println("STU ID   | NAME                    | TYPE               | AVG GRADE         | STATUS                ");
                     System.out.println("----------------------------------------------------------------------------------------------------");
 
-                    // Move this to displayStudentDetails
+                    // Displaying student details
                     if (studentCount == 0) {
                         System.out.println("No students found\n");
-                    } else if (studentCount <= 5) {
-                        for (int i = 0; i < studentCount; i++) {
-                            Student s = studentManager.getStudents()[i];
+                    } else {
+                        if (studentCount <= 5) {
+                            for (int i = 0; i < studentCount; i++) {
+                                Student s = studentManager.getStudents()[i];
 
-                            s.displayStudentDetails();
+                                s.displayStudentDetails();
+                            }
+                        } else {
+                            for (int i = 0; i < studentCount; i++) {
+                                Student s = studentManager.getStudents()[i];
+
+
+                                studentDisplayCount++;
+                            }
                         }
                         System.out.println();
                         System.out.printf("Total Students: %d\n", studentCount);
@@ -278,7 +293,15 @@ public class Main {
                         System.out.printf("Type: %s Student\n", studentForReport.getStudentType());
                         if (hasGrades) {
                             System.out.printf("Current Average: %.1f%%\n", gradeManager.calculateOverallAverage(studentIdForReport)); // change to actual average
-                            System.out.printf("Status: PASSING\n"); // change to actual status
+
+                            // Check if student is passing (average grade is greater than passing grade)
+                             boolean isPassing = studentForReport.isPassing(gradeManager.calculateOverallAverage(studentIdForReport));
+
+                             if (isPassing) {
+                                 System.out.print("Status: PASSING\n");
+                             } else {
+                                 System.out.print("Status: FAILING\n");
+                             }
                         } else {
                             System.out.printf("Passing Grade: %.0f%%\n", studentForReport.getPassingGrade());
                         }

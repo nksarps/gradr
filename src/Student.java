@@ -10,6 +10,7 @@ abstract class Student {
 
     Student() {
         setStudentId();
+        setStatus();
     }
 
     abstract void displayStudentDetails();
@@ -19,14 +20,14 @@ abstract class Student {
     // return average of all grades (for the student)
     abstract double getPassingGrade();
 
-    // I will calculate the average grade later
+    // Passing the gradeManager as a parameter here.
+    // Change if you get a better idea
     public double calculateAverageGrade() {
         return 0.0;
     };
 
     public boolean isPassing(double averageGrade) {
-        // use an if statement and let this method take in an attribute of score
-        return false;
+        return averageGrade >= getPassingGrade();
     }
 
     // Getters
