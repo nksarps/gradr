@@ -29,8 +29,7 @@ abstract class Student {
     // return average of all grades (for the student)
     abstract double getPassingGrade();
 
-    // Passing the gradeManager as a parameter here.
-    // Change if you get a better idea
+    // Using the grade manager variable here
     public double calculateAverageGrade() {
         // Using the calculateOverallAverage method from GradeManager to get the average of
         // student marks
@@ -92,6 +91,12 @@ abstract class Student {
         // Question: Why does ++studentCounter work but studentCounter++ does not
         studentId = String.format("STU%03d", ++studentCounter);
     }
+
+    // Getting the number of subjects the student is enrolled in
+    public int getEnrolledSubjectsCount() {
+        if (gradeManager == null) return 0;
+        return gradeManager.getEnrolledSubjectsCount(studentId);
+    }
 }
 
 
@@ -111,6 +116,8 @@ class RegularStudent extends Student {
         // Display student details
         System.out.printf("%-8s | %-23s | %-18s | %-17.2f | %20s\n",
                 getStudentId(), getName(), getStudentType(), calculateAverageGrade(), getStatus());
+        System.out.printf("%-8s | Enrolled Subjects: %s | Passing Grade: %s\n",
+                "", getEnrolledSubjectsCount(), getPassingGrade());
     }
 
     @Override
@@ -139,8 +146,16 @@ class HonorsStudent extends Student {
     @Override
     void displayStudentDetails() {
         // Display student details + Honors status
-        System.out.printf("%-8s | %-23s | %-18s | %-17.2f | %20s\n",
+        System.out.printf("%-8s | %-23s | %-18s | %-17.2f | %s\n",
                 getStudentId(), getName(), getStudentType(), calculateAverageGrade(), getStatus());
+        if (checkHonorsEligibility().equals("Yes")) {
+            System.out.printf("%-8s | Enrolled Subjects: %s | Passing Grade: %s | Honors Eligible\n",
+                    "", getName(), getPassingGrade());
+        } else {
+            System.out.printf("%-8s | Enrolled Subjects: %s | Passing Grade: %s\n",
+                    "", getEnrolledSubjectsCount(), getPassingGrade());
+        }
+
     }
 
     @Override
