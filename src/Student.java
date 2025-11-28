@@ -213,4 +213,16 @@ class StudentManager {
         return students;
     }
 
+    // Calculating the average grade for the whole class to be displayed in the option 2
+    // in the main menu
+    public double calculateClassAverage() {
+        double totalAverage = 0;
+
+        // Calculating the average of all the students added
+        for (int i = 0; i < studentCount; i++) {  // Only iterate over added students
+            totalAverage += students[i].calculateAverageGrade();
+        }
+
+        return totalAverage / getStudentCount();
+    }
 }
