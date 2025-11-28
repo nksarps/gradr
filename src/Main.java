@@ -117,6 +117,7 @@ public class Main {
                                 Student s = studentManager.getStudents()[i];
 
                                 s.displayStudentDetails();
+                                System.out.println("----------------------------------------------------------------------------------------------------");
                             }
                         } else {
                             for (int i = 0; i < studentCount; i++) {
