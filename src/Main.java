@@ -106,9 +106,11 @@ public class Main {
 
                             s.displayStudentDetails();
                         }
+                        System.out.println();
                         System.out.printf("Total Students: %d\n", studentCount);
                         // Change this to the average grade of the class
                         System.out.printf("Average Class Grade: %.2f%%\n", 0.0);
+                        System.out.println();
                     }
 
                     break;
@@ -259,27 +261,28 @@ public class Main {
                     //If there is a student associated with the ID, continue, else
                     // display an error message
                     if (studentForGrades != null) {
-                        // Checking if student has grades record to display different student details
+                        // Checking if student has grades recorded
                         boolean hasGrades = false;
                         for (Grade studentGrade : gradeManager.getGrades()) {
+                            // Using the condition, studentGrade != null, so it doesn't throw an error when
+                            // the studentGrade is null (when the grades array is empty)
                             if (studentGrade != null && studentGrade.getStudentId().equals(studentIdForReport)) {
                                 hasGrades = true;
                                 break;
                             }
                         }
 
+                        // Printing out different student details for when student has grades recorded and
+                        // when the student does not
+                        System.out.printf("Student: %s - %s\n", studentForGrades.getStudentId(), studentForGrades.getName());
+                        System.out.printf("Type: %s Student\n", studentForGrades.getStudentType());
                         if (hasGrades) {
-                            System.out.printf("Student: %s - %s\n", studentForGrades.getStudentId(), studentForGrades.getName());
-                            System.out.printf("Type: %s Student\n", studentForGrades.getStudentType());
                             System.out.printf("Current Average: %.1f%%\n", 0.0); // change to actual average
                             System.out.printf("Status: PASSING\n"); // change to actual status
-                            System.out.println();
                         } else {
-                            System.out.printf("Student: %s - %s\n", studentForGrades.getStudentId(), studentForGrades.getName());
-                            System.out.printf("Type: %s Student\n", studentForGrades.getStudentType());
                             System.out.printf("Passing Grade: %.0f%%\n", studentForGrades.getPassingGrade());
-                            System.out.println();
                         }
+                        System.out.println();
 
                         gradeManager.viewGradesByStudent(studentIdForReport);
                     } else {
