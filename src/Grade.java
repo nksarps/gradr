@@ -228,4 +228,21 @@ class GradeManager{
     public Grade[] getGrades() {
         return grades;
     }
+
+    // Getting the number of enrolled subjects for students
+    // This is to be used in the Student class where we display the
+    // number of enrolled subjects in the students table
+    public int getEnrolledSubjectsCount(String studentId) {
+        int subjectCount = 0;
+
+        for (Grade grade : grades) {
+            if (grade == null) continue;
+
+            if (grade.getStudentId().equals(studentId)) {
+                subjectCount++;
+            }
+        }
+
+        return subjectCount;
+    }
 }
