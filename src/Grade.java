@@ -68,8 +68,6 @@ public class Grade implements Gradable {
         this.grade = grade;
     }
 
-
-
     public void displayGradeDetails() {
         // displays grade details
     }
@@ -109,11 +107,12 @@ class GradeManager{
 
     public void viewGradesByStudent(String studentId) {
         // Print out all the grades by the student with the provided studentID
-        // found is for checking if the student has grades added
+        // The variable found is for checking if the student has grades added
         boolean found = false;
         int totalCourses = 0;
 
         for (Grade grade : grades) {
+            // To prevent the code from throwing an error when the grades array is empty
             if (grade == null) continue;
 
             if (grade.getStudentId().equals(studentId)) {
@@ -149,9 +148,10 @@ class GradeManager{
         } else {
             System.out.println();
             System.out.printf("Total Grades: %d\n", totalCourses);
-            System.out.printf("Core Subjects Average: %d\n", totalCourses);
-            System.out.printf("Elective Subjects Average: %d\n", totalCourses);
-            System.out.printf("Overall Average: %d\n", totalCourses);
+            System.out.printf("Core Subjects Average: %.1f%%\n", calculateCoreAverage(studentId));
+            System.out.printf("Elective Subjects Average: %.1f%%\n", calculateElectiveAverage(studentId));
+            System.out.printf("Overall Average: %.1f%%\n", calculateOverallAverage(studentId));
+            System.out.println();
 
         }
     }
@@ -163,7 +163,25 @@ class GradeManager{
         // Get the subject of the grade using the subject parameter passed to the grade
         // Use subject parameter to get core subjects
         // Calculate the average of these core subjects
-        return 0.00;
+        double gradeSum = 0;
+        int totalCourses = 0;
+
+        for (Grade grade : grades) {
+            if (grade == null) continue;
+
+            if (grade.getStudentId().equals(studentId)) {
+                if (grade.getSubject().getSubjectType().equals("Core")) {
+                    gradeSum += grade.getGrade();
+                    totalCourses++;
+                }
+            }
+        }
+
+        // To prevent the method from throwing an error by dividing by 0
+        // if there are no core subjects
+        if (totalCourses == 0) return 0.0;
+
+        return gradeSum / totalCourses;
     }
 
     public double calculateElectiveAverage(String studentId) {
@@ -172,14 +190,48 @@ class GradeManager{
         // Get the subject of the grade using the subject parameter passed to the grade
         // Use subject parameter to get elective subjects
         // Calculate the average of these elective subjects
-        return 0.00;
+        double gradeSum = 0;
+        int totalCourses = 0;
+
+        for (Grade grade : grades) {
+            if (grade == null) continue;
+
+            if (grade.getStudentId().equals(studentId)) {
+                if (grade.getSubject().getSubjectType().equals("Elective")) {
+                    gradeSum += grade.getGrade();
+                    totalCourses++;
+                }
+            }
+        }
+        // To prevent the method from throwing an error by dividing by 0
+        // if there are no elective subjects
+        if (totalCourses == 0) return 0.0;
+
+        return gradeSum / totalCourses;
     }
 
     public double calculateOverallAverage(String studentId) {
-        // Print out all the grades by the student with the provided studentID
+        // Get out all the grades by the student with the provided studentID
         // Use the Grade class since its constructor takes in studentId as an input
         // Calculate the average of all the grades for that particular student
-        return 0.00;
+        double gradeSum = 0;
+        int totalCourses = 0;
+
+        for (Grade grade : grades) {
+            // To prevent an error if the grades array is empty
+            if (grade == null) continue;
+
+            if (grade.getStudentId().equals(studentId)) {
+                gradeSum += grade.getGrade();
+                totalCourses++;
+            }
+        }
+
+        // To prevent the method from throwing an error by dividing by 0
+        // if there are no subjects
+        if (totalCourses == 0) return 0.0;
+
+        return gradeSum / totalCourses;
     }
 
     public int getGradeCount() {
