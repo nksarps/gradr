@@ -8,6 +8,14 @@ abstract class Student {
 
     static int studentCounter;
 
+    // Adding the gradeManager to be able to access the student's grades from here
+    private GradeManager gradeManager;
+
+    // Adding a setter to be able to get an instance of gradeManager in th student class
+    public void setGradeManager(GradeManager gradeManager) {
+        this.gradeManager = gradeManager;
+    }
+
     Student() {
         setStudentId();
         setStatus();
@@ -23,7 +31,10 @@ abstract class Student {
     // Passing the gradeManager as a parameter here.
     // Change if you get a better idea
     public double calculateAverageGrade() {
-        return 0.0;
+        // Using the calculateOverallAverage method from GradeManager to get the average of
+        // student marks
+        if (gradeManager == null) return 0.0;
+        return gradeManager.calculateOverallAverage(studentId);
     };
 
     public boolean isPassing(double averageGrade) {
@@ -93,6 +104,7 @@ class RegularStudent extends Student {
         setPhone(phone);
     }
 
+    // Passing gradeManager as an argument here to get the average grade for display
     @Override
     public void displayStudentDetails() {
         // Display student details
