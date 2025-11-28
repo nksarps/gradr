@@ -66,8 +66,13 @@ public class Main {
 
                     // student.calculateAverageGrade() = studentGradeAverage;
 
+                    // Setting grade manager after creating student to be able to access
+                    // the gradeManager (grade) in the student class
+                    student.setGradeManager(gradeManager);
+
                     // Adding a student to the array
                     studentManager.addStudent(student);
+
 
                     System.out.println("Student added successfully!");
 
@@ -143,7 +148,7 @@ public class Main {
                     System.out.println("Student Details:");
                     System.out.printf("Name: %s\n", foundStudent.getName());
                     System.out.printf("Type: %s Student\n", foundStudent.getStudentType());
-                    System.out.printf("Current Average: %.2f%%\n", foundStudent.getPassingGrade()); // change this to the student's average mark
+                    System.out.printf("Current Average: %.1f%%\n", foundStudent.calculateAverageGrade()); // change this to the student's average mark
                     System.out.println();
 
                     System.out.println("Subject type:");
