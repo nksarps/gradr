@@ -156,13 +156,7 @@ class GradeManager{
         }
     }
 
-    // START HERE
     public double calculateCoreAverage(String studentId) {
-        // Print out all the grades by the student with the provided studentID
-        // Use the Grade class since its constructor takes in studentId as an input
-        // Get the subject of the grade using the subject parameter passed to the grade
-        // Use subject parameter to get core subjects
-        // Calculate the average of these core subjects
         double gradeSum = 0;
         int totalCourses = 0;
 
@@ -185,11 +179,6 @@ class GradeManager{
     }
 
     public double calculateElectiveAverage(String studentId) {
-        // Print out all the grades by the student with the provided studentID
-        // Use the Grade class since its constructor takes in studentId as an input
-        // Get the subject of the grade using the subject parameter passed to the grade
-        // Use subject parameter to get elective subjects
-        // Calculate the average of these elective subjects
         double gradeSum = 0;
         int totalCourses = 0;
 
@@ -203,6 +192,7 @@ class GradeManager{
                 }
             }
         }
+
         // To prevent the method from throwing an error by dividing by 0
         // if there are no elective subjects
         if (totalCourses == 0) return 0.0;
@@ -211,9 +201,6 @@ class GradeManager{
     }
 
     public double calculateOverallAverage(String studentId) {
-        // Get out all the grades by the student with the provided studentID
-        // Use the Grade class since its constructor takes in studentId as an input
-        // Calculate the average of all the grades for that particular student
         double gradeSum = 0;
         int totalCourses = 0;
 

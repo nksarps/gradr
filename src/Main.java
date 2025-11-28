@@ -256,11 +256,11 @@ public class Main {
                     System.out.println();
 
                     // Get student using ID and display student details
-                    Student studentForGrades = studentManager.getStudent(studentIdForReport);
+                    Student studentForReport = studentManager.getStudent(studentIdForReport);
 
                     //If there is a student associated with the ID, continue, else
                     // display an error message
-                    if (studentForGrades != null) {
+                    if (studentForReport != null) {
                         // Checking if student has grades recorded
                         boolean hasGrades = false;
                         for (Grade studentGrade : gradeManager.getGrades()) {
@@ -274,13 +274,13 @@ public class Main {
 
                         // Printing out different student details for when student has grades recorded and
                         // when the student does not
-                        System.out.printf("Student: %s - %s\n", studentForGrades.getStudentId(), studentForGrades.getName());
-                        System.out.printf("Type: %s Student\n", studentForGrades.getStudentType());
+                        System.out.printf("Student: %s - %s\n", studentForReport.getStudentId(), studentForReport.getName());
+                        System.out.printf("Type: %s Student\n", studentForReport.getStudentType());
                         if (hasGrades) {
-                            System.out.printf("Current Average: %.1f%%\n", 0.0); // change to actual average
+                            System.out.printf("Current Average: %.1f%%\n", gradeManager.calculateOverallAverage(studentIdForReport)); // change to actual average
                             System.out.printf("Status: PASSING\n"); // change to actual status
                         } else {
-                            System.out.printf("Passing Grade: %.0f%%\n", studentForGrades.getPassingGrade());
+                            System.out.printf("Passing Grade: %.0f%%\n", studentForReport.getPassingGrade());
                         }
                         System.out.println();
 
