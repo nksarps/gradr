@@ -11,7 +11,8 @@ abstract class Student {
     // Adding the gradeManager to be able to access the student's grades from here
     private GradeManager gradeManager;
 
-    // Adding a setter to be able to get an instance of gradeManager in th student class
+    // Adding a setter to be able to get an instance of gradeManager in the student class
+    // This is used after user has been created in Main
     public void setGradeManager(GradeManager gradeManager) {
         this.gradeManager = gradeManager;
     }
