@@ -3,3 +3,5 @@
 - Finish up View Grades section. Add conditions for when students are more than 5.
 - Class for the display menus of the different options
 - Confirm if there is a problem with my use of gradeCounter
+- Add performance summary
+- WHEN INVALID STUDENT ID IS ENTERED
