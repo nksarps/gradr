@@ -35,7 +35,7 @@ abstract class Student {
         // student marks
         if (gradeManager == null) return 0.0;
         return gradeManager.calculateOverallAverage(studentId);
-    };
+    }
 
     public boolean isPassing(double averageGrade) {
         return averageGrade >= getPassingGrade();
@@ -79,7 +79,7 @@ abstract class Student {
         this.email = email;
     }
 
-    public void setPhone(String name) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
