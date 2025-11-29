@@ -5,6 +5,7 @@ A Java-based console application for managing student grades.
 Gradr is a Java-based console application for managing student grades. The project shows key OOP principles like abstraction, inheritance, polymorphism, and encapsulation, while providing a structured and efficient waw to handle student grades.
 
 ## Project Structure
+```bash
 gradr/
 ├── .idea/
 │   ├── .gitignore
@@ -22,6 +23,7 @@ gradr/
 ├── README.md
 ├── StudentGradeManagement.iml
 └── TODO.md
+```
 
 ## Prerequisites
 
@@ -65,7 +67,7 @@ java src/Main.java
 
 ## Usage Examples
 ### Main Menu
-``` bash
+```bash
 ||=============================================||
 ||     STUDENT GRADE MANAGEMENT - MAIN MENU    ||
 ||=============================================||
@@ -79,7 +81,8 @@ java src/Main.java
 Enter choice: 
 ```
 
-### Adding a new student
+
+### Add Student
 ```bash
 Enter choice: 1
 
@@ -105,6 +108,98 @@ Age: 20
 Email: nana.kwaku@school.edu
 Passing Grade: 50%
 Status: Active
+```
+
+### View Students
+```bash
+Enter choice: 2
+
+STUDENT LISTING
+----------------------------------------------------------------------------------------------------
+STU ID   | NAME                    | TYPE               | AVG GRADE         | STATUS                
+----------------------------------------------------------------------------------------------------
+STU001   | Nana Kwaku              | Regular            | 94.00             |               Active
+         | Enrolled Subjects: 2 | Passing Grade: 50.0
+----------------------------------------------------------------------------------------------------
+STU002   | Adwoa Mansa             | Honors             | 87.0             % | Active
+         | Enrolled Subjects: Adwoa Mansa | Passing Grade: 60.0 | Honors Eligible
+----------------------------------------------------------------------------------------------------
+STU003   | Kofi Poku               | Regular            | 70.00             |               Active
+         | Enrolled Subjects: 1 | Passing Grade: 50.0
+----------------------------------------------------------------------------------------------------
+
+Total Students: 3
+Average Class Grade: 83.67%
+```
+### Record Grade
+```bash
+Enter Student ID: STU001
+
+Student Details:
+Name: Nana Kwaku
+Type: Regular Student
+Current Average: 98.0%
+
+Subject type:
+1. Core Subject (Mathematics, English, Science)
+2. Elective Subject (Music, Art, Physical Education)
+
+Select type (1-2): 2
+
+Available Elective Subjects
+1. Music
+2. Art
+3. Physical Education
+
+Select subject: 2
+
+Enter grade: 90
+GRADE CONFIRMATION
+_______________________________________________________
+Grade ID: GRD003
+Student: STU001 - Nana Kwaku
+Subject: Art (Elective)
+Grade: 90.0%
+Date: 2025-11-29
+______________________________________________________
+
+Confirm grade? (Y/N): Y
+Grade added successfully.
+```
+
+### View Grade Report
+```bash
+Enter choice: 4
+
+VIEW GRADE REPORT
+_______________________________________________
+
+Enter Student ID: STU001
+
+Student: STU001 - Nana Kwaku
+Type: Regular Student
+Current Average: 94.0%
+Status: PASSING
+
+GRADE HISTORY
+-------------------------------------------------------------------------------------
+GRD ID   | DATE       | SUBJECT          | TYPE       | GRADE
+-------------------------------------------------------------------------------------
+GRD001    | 2025-11-29 | English          | Core       | 98.0 %
+GRD003    | 2025-11-29 | Art              | Elective   | 90.0 %
+
+Total Grades: 2
+Core Subjects Average: 98.0%
+Elective Subjects Average: 90.0%
+Overall Average: 94.0%
+```
+
+### Exit
+```bash
+Enter choice: 5
+
+Thank you for using Student Grade Management System!
+Goodbye!
 ```
 
 ## License
