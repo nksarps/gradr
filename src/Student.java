@@ -114,7 +114,7 @@ class RegularStudent extends Student {
     @Override
     public void displayStudentDetails() {
         // Display student details
-        System.out.printf("%-8s | %-23s | %-18s | %-17.2f | %20s\n",
+        System.out.printf("%-8s | %-23s | %-18s | %-17.1f%% | %20s\n",
                 getStudentId(), getName(), getStudentType(), calculateAverageGrade(), getStatus());
         System.out.printf("%-8s | Enrolled Subjects: %s | Passing Grade: %s\n",
                 "", getEnrolledSubjectsCount(), getPassingGrade());
@@ -146,7 +146,7 @@ class HonorsStudent extends Student {
     @Override
     void displayStudentDetails() {
         // Display student details + Honors status
-        System.out.printf("%-8s | %-23s | %-18s | %-17.2f | %s\n",
+        System.out.printf("%-8s | %-23s | %-18s | %-17.1f%% | %s\n",
                 getStudentId(), getName(), getStudentType(), calculateAverageGrade(), getStatus());
         if (checkHonorsEligibility().equals("Yes")) {
             System.out.printf("%-8s | Enrolled Subjects: %s | Passing Grade: %s | Honors Eligible\n",
