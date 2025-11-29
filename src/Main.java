@@ -109,22 +109,36 @@ public class Main {
                     System.out.println("----------------------------------------------------------------------------------------------------");
 
                     // Displaying student details
+                    // If there are no students added yet
                     if (studentCount == 0) {
                         System.out.println("No students found\n");
                     } else {
                         if (studentCount <= 5) {
                             for (int i = 0; i < studentCount; i++) {
+                                // Looping through the students array using i from the loop as the index
                                 Student s = studentManager.getStudents()[i];
 
                                 s.displayStudentDetails();
                                 System.out.println("----------------------------------------------------------------------------------------------------");
                             }
                         } else {
-                            for (int i = 0; i < studentCount; i++) {
+                            for (int i = 0; i < studentCount && studentDisplayCount < 5; i++) {
+                                // Looping through the students array using i from the loop as the index
                                 Student s = studentManager.getStudents()[i];
 
-
-                                studentDisplayCount++;
+                                // Check student type to make sure it displays five students
+                                // 3 Regular and 2 Honors
+                                if (s.getStudentType().equals("Regular") && regularStudentsDisplayCount < 3) {
+                                    s.displayStudentDetails();
+                                    System.out.println("----------------------------------------------------------------------------------------------------");
+                                    regularStudentsDisplayCount++;
+                                    studentDisplayCount++;
+                                } else if (s.getStudentType().equals("Honors") && honorStudentsDisplayCount < 2) {
+                                    s.displayStudentDetails();
+                                    System.out.println("----------------------------------------------------------------------------------------------------");
+                                    honorStudentsDisplayCount++;
+                                    studentDisplayCount++;
+                                }
                             }
                         }
                         System.out.println();
