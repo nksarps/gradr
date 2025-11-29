@@ -323,11 +323,27 @@ public class Main {
                                  System.out.print("Status: FAILING\n");
                              }
                         } else {
+                            // For when student has no records
                             System.out.printf("Passing Grade: %.0f%%\n", studentForReport.getPassingGrade());
                         }
                         System.out.println();
 
                         gradeManager.viewGradesByStudent(studentIdForReport);
+
+                        // Displaying the student's performance summary
+                        System.out.println("Performance Summary:");
+                        // If student is passing
+                        boolean isPassing = studentForReport.isPassing(gradeManager.calculateOverallAverage(studentIdForReport));
+                        if (isPassing) {
+                            System.out.println("Passing all core subjects");
+                            System.out.printf("Meeting passing grade requirement (%.0f%%)\n", studentForReport.getPassingGrade());
+                            System.out.println();
+                        } else {
+                            System.out.println("Failing some subjects");
+                            System.out.printf("Failing to meet passing grade requirement (%.0f%%)\n", studentForReport.getPassingGrade());
+                            System.out.println();
+                        }
+
                     } else {
                         System.out.println("Invalid Student ID. Student with this ID does not exist");
                         break;
