@@ -2,7 +2,7 @@
 A Java-based console application for managing student grades. 
 
 ## Project Overview 
-Gradr is a Java-based console application for managing student grades. The project shows key OOP principles like abstraction, inheritance, polymorphism, and encapsulation, while providing a structured and efficient waw to handle student grades.
+Gradr is a Java-based console application for managing student grades. The project shows key OOP principles like abstraction, inheritance, polymorphism, and encapsulation, while providing a structured and efficient way to handle student grades.
 
 ## Project Structure
 ```bash
@@ -62,7 +62,7 @@ javac src/*.java
 
 ### 4. Run the Project
 ```bash
-java src/Main.java
+java src/Main
 ```
 
 ## Usage Examples
