@@ -127,7 +127,8 @@ class RegularStudent extends Student {
 
     @Override
     public double getPassingGrade() {
-        return 50.0;
+        return passingGrade;
+        // return 50.0;
     }
 }
 
@@ -165,7 +166,8 @@ class HonorsStudent extends Student {
 
     @Override
     public double getPassingGrade() {
-        return 60.0;
+        return passingGrade;
+        // return 60.0;
     }
 
     public String checkHonorsEligibility() {
@@ -190,6 +192,9 @@ class StudentManager {
 
     public Student getStudent(String studentId) {
         for (Student student : students) {
+            // To prevent error when wrong Id is provided
+            if (student == null) return null;
+
             if (student.getStudentId().equals(studentId)) {
                 return student;
             }
