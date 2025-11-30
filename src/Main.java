@@ -160,6 +160,12 @@ public class Main {
 
                     Student foundStudent = studentManager.getStudent(studentId);
 
+                    if (foundStudent == null) {
+                        System.out.println("Invalid ID. Student with this ID does not exist");
+                        System.out.println();
+                        break;
+                    }
+
                     System.out.println("Student Details:");
                     System.out.printf("Name: %s\n", foundStudent.getName());
                     System.out.printf("Type: %s Student\n", foundStudent.getStudentType());
@@ -300,7 +306,8 @@ public class Main {
                         boolean hasGrades = false;
                         for (Grade studentGrade : gradeManager.getGrades()) {
                             // Using the condition, studentGrade != null, so it doesn't throw an error when
-                            // the studentGrade is null (when the grades array is empty)
+                            // the studentGrade is null (when the grades array is empty) for the display of student
+                            // details
                             if (studentGrade != null && studentGrade.getStudentId().equals(studentIdForReport)) {
                                 hasGrades = true;
                                 break;
@@ -346,6 +353,7 @@ public class Main {
 
                     } else {
                         System.out.println("Invalid Student ID. Student with this ID does not exist");
+                        System.out.println();
                         break;
                     }
 
