@@ -1,2 +1,0 @@
-- Add checker to see if user exceeds 50 before adding new user
-- WHEN INVALID STUDENT ID IS ENTERED
