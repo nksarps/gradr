@@ -26,10 +26,9 @@ abstract class Student {
 
     abstract String getStudentType();
 
-    // return average of all grades (for the student)
     abstract double getPassingGrade();
 
-    // Using the grade manager variable here
+    // Using the grade manager instance here
     public double calculateAverageGrade() {
         // Using the calculateOverallAverage method from GradeManager to get the average of
         // student marks

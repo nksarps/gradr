@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        StudentManager studentManager = new StudentManager(); // studentManager things
+        StudentManager studentManager = new StudentManager();
         GradeManager gradeManager = new GradeManager();
 
         int choice;
@@ -21,7 +21,6 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    // ADD STUDENT
                     System.out.println("ADD STUDENT");
                     System.out.println("_______________________________________________");
                     System.out.println();
@@ -54,17 +53,10 @@ public class Main {
                         student = new RegularStudent(name, age, email, phone);
                     } else if (studentType == 2) {
                         student = new HonorsStudent(name, age, email, phone);
-                    } else { // Loop until user enters the right student type choice
+                    } else {
                         System.out.println("Invalid student type. Enter details again.");
                         break;
                     }
-
-                    // student.setStatus();
-
-                    // Trying the get the averageGrade of the student
-                    double studentGradeAverage = gradeManager.calculateOverallAverage(student.getStudentId());
-
-                    // student.calculateAverageGrade() = studentGradeAverage;
 
                     // Setting grade manager after creating student to be able to access
                     // the gradeManager (grade) in the student class
@@ -76,7 +68,6 @@ public class Main {
 
                     System.out.println("Student added successfully!");
 
-                    // Using studentCount as studentID
                     System.out.printf("Student ID: %s\n", student.getStudentId());
                     System.out.printf("Name: %s\n", student.getName());
                     System.out.printf("Type: %s\n", student.getStudentType());
@@ -86,7 +77,6 @@ public class Main {
 
                     if (student.getStudentType().equals("Honors")) {
                         HonorsStudent honorsStudent = (HonorsStudent) student;
-                        // Change the average here
                         String isEligible = honorsStudent.checkHonorsEligibility();
 
                         System.out.printf("Honors Eligible: %s\n", isEligible);
@@ -96,7 +86,6 @@ public class Main {
                     System.out.println();
                     break;
                 case 2:
-                    // CONTINUE THIS
                     int studentDisplayCount = 0;
                     int regularStudentsDisplayCount = 0;
                     int honorStudentsDisplayCount = 0;
@@ -115,7 +104,6 @@ public class Main {
                     } else {
                         if (studentCount <= 5) {
                             for (int i = 0; i < studentCount; i++) {
-                                // Looping through the students array using i from the loop as the index
                                 Student s = studentManager.getStudents()[i];
 
                                 s.displayStudentDetails();
@@ -123,7 +111,6 @@ public class Main {
                             }
                         } else {
                             for (int i = 0; i < studentCount && studentDisplayCount < 5; i++) {
-                                // Looping through the students array using i from the loop as the index
                                 Student s = studentManager.getStudents()[i];
 
                                 // Check student type to make sure it displays five students
@@ -143,7 +130,6 @@ public class Main {
                         }
                         System.out.println();
                         System.out.printf("Total Students: %d\n", studentCount);
-                        // Change this to the average grade of the class
                         System.out.printf("Average Class Grade: %.2f%%\n", studentManager.calculateClassAverage());
                         System.out.println();
                     }
@@ -180,13 +166,11 @@ public class Main {
                     int subjectTypeChoice = scanner.nextInt();
                     scanner.nextLine();
 
-                    // Setting subject type for display in Available Subjects
+                    // Setting subject type for displaying Available Subjects
                     String subjectType;
                     if (subjectTypeChoice == 1) {
-                        // subjectType = "Core";
                         subject = new CoreSubject(null, null);
                     } else if (subjectTypeChoice == 2) {
-                        // subjectType = "Elective";
                         subject = new ElectiveSubject(null, null);
                     } else {
                         System.out.println("Invalid subject type entered");
@@ -201,7 +185,7 @@ public class Main {
                         System.out.println("1. Mathematics");
                         System.out.println("2. English");
                         System.out.println("3. Science");
-                    } else { // Look more into this
+                    } else {
                         System.out.println("1. Music");
                         System.out.println("2. Art");
                         System.out.println("3. Physical Education");
@@ -213,7 +197,6 @@ public class Main {
                     int subjectChoice = scanner.nextInt();
                     scanner.nextLine();
 
-                    // Adding the names of the subject to the subject object instantiated
                     if (subjectChoice == 1 || subjectChoice == 2 || subjectChoice == 3) {
                         if (subjectTypeChoice == 1) {
                             if (subjectChoice == 1) {
@@ -239,15 +222,14 @@ public class Main {
 
                     System.out.println();
 
-                    // Taking the input of the subject's grade
                     System.out.print("Enter grade: ");
                     int gradeInput = scanner.nextInt();
                     scanner.nextLine();
 
                     // Validating the grade
-                    Grade grade = new Grade(studentId, subject, (double) gradeInput);
+                    Grade grade = new Grade(studentId, subject, gradeInput);
 
-                    // Used recordGrade because it validates the grade before return true
+                    // Used recordGrade because it validates if the grade can be recorded
                     if (grade.recordGrade(gradeInput)) {
                         grade.setGradeId();
 
@@ -260,7 +242,6 @@ public class Main {
                         System.out.printf("Date: %s\n", grade.getDate());
                         System.out.println("______________________________________________________\n");
 
-                        // TD: add constraint to forget capitalization
                         System.out.print("Confirm grade? (Y/N): ");
                         char confirmGrade = scanner.next().charAt(0);
 
@@ -270,8 +251,7 @@ public class Main {
 
                                 System.out.println("Grade added successfully.\n");
                             } else {
-                                // Reduce the gradeCounter by 1 so the counter matches the index - 1
-                                // in the grades array
+
                                 Grade.gradeCounter--;
 
                                 System.out.println("Grade record cancelled\n");
