@@ -21,8 +21,8 @@ gradr/
 │
 ├── .gitignore
 ├── README.md
-├── StudentGradeManagement.iml
-└── TODO.md
+└── StudentGradeManagement.iml
+
 ```
 
 ## Prerequisites
