@@ -298,6 +298,7 @@ public class Main {
                         // when the student does not
                         System.out.printf("Student: %s - %s\n", studentForReport.getStudentId(), studentForReport.getName());
                         System.out.printf("Type: %s Student\n", studentForReport.getStudentType());
+
                         if (hasGrades) {
                             System.out.printf("Current Average: %.1f%%\n", gradeManager.calculateOverallAverage(studentIdForReport)); // change to actual average
 
@@ -309,27 +310,27 @@ public class Main {
                              } else {
                                  System.out.print("Status: FAILING\n");
                              }
+
+                            gradeManager.viewGradesByStudent(studentIdForReport);
+
+                            // Displaying the student's performance summary
+                            System.out.println("Performance Summary:");
+                            if (isPassing) {
+                                System.out.println("Passing all core subjects");
+                                System.out.printf("Meeting passing grade requirement (%.0f%%)\n", studentForReport.getPassingGrade());
+                                System.out.println();
+                            } else {
+                                System.out.println("Failing some subjects");
+                                System.out.printf("Failing to meet passing grade requirement (%.0f%%)\n", studentForReport.getPassingGrade());
+                                System.out.println();
+                            }
                         } else {
-                            // For when student has no records
+                            // For when student has no grades recorded
                             System.out.printf("Passing Grade: %.0f%%\n", studentForReport.getPassingGrade());
+
+                            gradeManager.viewGradesByStudent(studentIdForReport);
                         }
                         System.out.println();
-
-                        gradeManager.viewGradesByStudent(studentIdForReport);
-
-                        // Displaying the student's performance summary
-                        System.out.println("Performance Summary:");
-                        // If student is passing
-                        boolean isPassing = studentForReport.isPassing(gradeManager.calculateOverallAverage(studentIdForReport));
-                        if (isPassing) {
-                            System.out.println("Passing all core subjects");
-                            System.out.printf("Meeting passing grade requirement (%.0f%%)\n", studentForReport.getPassingGrade());
-                            System.out.println();
-                        } else {
-                            System.out.println("Failing some subjects");
-                            System.out.printf("Failing to meet passing grade requirement (%.0f%%)\n", studentForReport.getPassingGrade());
-                            System.out.println();
-                        }
 
                     } else {
                         System.out.println("Invalid Student ID. Student with this ID does not exist");
