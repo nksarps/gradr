@@ -125,12 +125,9 @@ class GradeManager{
                         grade.getSubject().getSubjectName(),
                         grade.getSubject().getSubjectType(),
                         grade.getGrade());
-
-
             }
         }
 
-        // found remain false if there are no grades added for the student
         if (!found) {
             System.out.println("_______________________________________________");
             System.out.println("No grades recorded for this student");
