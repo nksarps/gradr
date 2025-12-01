@@ -147,7 +147,7 @@ public class Main {
                     String studentId = scanner.nextLine();
                     System.out.println();
 
-                    Student foundStudent = studentManager.getStudent(studentId);
+                    Student foundStudent = studentManager.findStudent(studentId);
 
                     if (foundStudent == null) {
                         System.out.println("Invalid ID. Student with this ID does not exist");
@@ -259,6 +259,7 @@ public class Main {
                                 System.out.println("Grade record cancelled\n");
                             }
                         } else {
+                            Grade.gradeCounter--;
                             System.out.println("Invalid input.");
                         }
                     } else {
@@ -277,7 +278,7 @@ public class Main {
                     System.out.println();
 
                     // Get student using ID and display student details
-                    Student studentForReport = studentManager.getStudent(studentIdForReport);
+                    Student studentForReport = studentManager.findStudent(studentIdForReport);
 
                     //If there is a student associated with the ID, continue, else
                     // display an error message
