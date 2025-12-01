@@ -54,17 +54,16 @@ public class Main {
                     } else if (studentType == 2) {
                         student = new HonorsStudent(name, age, email, phone);
                     } else {
-                        System.out.println("Invalid student type. Enter details again.");
+                        System.out.println("Invalid student type.");
                         break;
                     }
 
-                    // Setting grade manager after creating student to be able to access
-                    // the gradeManager (grade) in the student class
+                    // Setting grade manager after creating student to be able to access the student's grades
+                    //  inside the student class
                     student.setGradeManager(gradeManager);
 
                     // Adding a student to the array
                     studentManager.addStudent(student);
-
 
                     System.out.println("Student added successfully!");
 
@@ -86,22 +85,24 @@ public class Main {
                     System.out.println();
                     break;
                 case 2:
+                    // For checking the number of student types displayed when the students in the system
+                    // are more than 5
                     int studentDisplayCount = 0;
                     int regularStudentsDisplayCount = 0;
                     int honorStudentsDisplayCount = 0;
 
                     int studentCount = studentManager.getStudentCount();
 
-                    System.out.println("STUDENT LISTING");
-                    System.out.println("----------------------------------------------------------------------------------------------------");
-                    System.out.println("STU ID   | NAME                    | TYPE               | AVG GRADE         | STATUS                ");
-                    System.out.println("----------------------------------------------------------------------------------------------------");
-
                     // Displaying student details
                     // If there are no students added yet
                     if (studentCount == 0) {
                         System.out.println("No students found\n");
                     } else {
+                        System.out.println("STUDENT LISTING");
+                        System.out.println("----------------------------------------------------------------------------------------------------");
+                        System.out.println("STU ID   | NAME                    | TYPE               | AVG GRADE         | STATUS                ");
+                        System.out.println("----------------------------------------------------------------------------------------------------");
+
                         if (studentCount <= 5) {
                             for (int i = 0; i < studentCount; i++) {
                                 Student s = studentManager.getStudents()[i];
@@ -110,6 +111,8 @@ public class Main {
                                 System.out.println("----------------------------------------------------------------------------------------------------");
                             }
                         } else {
+                            // Because I have to display 5 students if students are more than 5. 3 Regular students and
+                            // 2 honors students
                             for (int i = 0; i < studentCount && studentDisplayCount < 5; i++) {
                                 Student s = studentManager.getStudents()[i];
 
@@ -155,7 +158,7 @@ public class Main {
                     System.out.println("Student Details:");
                     System.out.printf("Name: %s\n", foundStudent.getName());
                     System.out.printf("Type: %s Student\n", foundStudent.getStudentType());
-                    System.out.printf("Current Average: %.1f%%\n", foundStudent.calculateAverageGrade()); // change this to the student's average mark
+                    System.out.printf("Current Average: %.1f%%\n", foundStudent.calculateAverageGrade());
                     System.out.println();
 
                     System.out.println("Subject type:");
@@ -251,7 +254,6 @@ public class Main {
 
                                 System.out.println("Grade added successfully.\n");
                             } else {
-
                                 Grade.gradeCounter--;
 
                                 System.out.println("Grade record cancelled\n");
@@ -259,8 +261,6 @@ public class Main {
                         } else {
                             System.out.println("Invalid input.");
                         }
-
-
                     } else {
                         System.out.println("Invalid grade entered");
                         break;
@@ -286,7 +286,7 @@ public class Main {
                         boolean hasGrades = false;
                         for (Grade studentGrade : gradeManager.getGrades()) {
                             // Using the condition, studentGrade != null, so it doesn't throw an error when
-                            // the studentGrade is null (when the grades array is empty) for the display of student
+                            // the student has no grades recorded for the display of student
                             // details
                             if (studentGrade != null && studentGrade.getStudentId().equals(studentIdForReport)) {
                                 hasGrades = true;
@@ -300,7 +300,7 @@ public class Main {
                         System.out.printf("Type: %s Student\n", studentForReport.getStudentType());
 
                         if (hasGrades) {
-                            System.out.printf("Current Average: %.1f%%\n", gradeManager.calculateOverallAverage(studentIdForReport)); // change to actual average
+                            System.out.printf("Current Average: %.1f%%\n", gradeManager.calculateOverallAverage(studentIdForReport));
 
                             // Check if student is passing (average grade is greater than passing grade)
                              boolean isPassing = studentForReport.isPassing(gradeManager.calculateOverallAverage(studentIdForReport));
