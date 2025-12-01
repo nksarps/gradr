@@ -191,7 +191,7 @@ class StudentManager {
 
     public Student getStudent(String studentId) {
         for (Student student : students) {
-            // To prevent error when wrong Id is provided
+            // To prevent error when wrong ID is provided
             if (student == null) return null;
 
             if (student.getStudentId().equals(studentId)) {
@@ -223,7 +223,7 @@ class StudentManager {
         double totalAverage = 0;
 
         // Calculating the average of all the students added
-        for (int i = 0; i < studentCount; i++) {  // Only iterate over added students
+        for (int i = 0; i < studentCount; i++) {
             totalAverage += students[i].calculateAverageGrade();
         }
 
