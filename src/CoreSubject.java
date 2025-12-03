@@ -1,6 +1,8 @@
 class CoreSubject extends Subject {
     private static boolean mandatory = true;
 
+    CoreSubject(){}
+
     CoreSubject(String subjectName, String subjectCode) {
         setSubjectName(subjectName);
         setSubjectCode(subjectCode);

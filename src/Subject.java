@@ -3,7 +3,7 @@ abstract class Subject {
     private String subjectCode;
 
     Subject () {
-        // Constructors
+
     }
 
     // Getters

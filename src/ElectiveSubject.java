@@ -1,6 +1,8 @@
 class ElectiveSubject extends Subject {
     private static boolean mandatory = false;
 
+    ElectiveSubject() {}
+
     ElectiveSubject(String subjectName, String subjectCode) {
         setSubjectName(subjectName);
         setSubjectCode(subjectCode);

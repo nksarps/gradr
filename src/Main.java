@@ -58,12 +58,12 @@ public class Main {
                         break;
                     }
 
+                    // Adding a student to the array
+                    studentManager.addStudent(student);
+
                     // Setting grade manager after creating student to be able to access the student's grades
                     //  inside the student class
                     student.setGradeManager(gradeManager);
-
-                    // Adding a student to the array
-                    studentManager.addStudent(student);
 
                     System.out.println("Student added successfully!");
 
@@ -172,9 +172,9 @@ public class Main {
                     // Setting subject type for displaying Available Subjects
                     String subjectType;
                     if (subjectTypeChoice == 1) {
-                        subject = new CoreSubject(null, null);
+                        subject = new CoreSubject();
                     } else if (subjectTypeChoice == 2) {
-                        subject = new ElectiveSubject(null, null);
+                        subject = new ElectiveSubject();
                     } else {
                         System.out.println("Invalid subject type entered");
                         break;
